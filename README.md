@@ -1,6 +1,6 @@
 # HR-Email-Response-Tool
 A tool that helps HR teams send responsive, professional, and automated emails to candidates, ensuring mobile-friendly design and faster communication.
-# efeatures
+# features
 Responsive email templates (mobile, tablet, desktop compatible)
 Customizable email content
 Candidate database integration (agar hai)
