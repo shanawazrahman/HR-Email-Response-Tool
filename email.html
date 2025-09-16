@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple HR Email Response Tool</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .container {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      width: 400px;
+    }
+    h2 { text-align: center; margin-bottom: 20px; }
+    label { display: block; margin: 10px 0 5px; font-weight: bold; }
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .radio-group {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 15px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    .btn-preview { background: #007bff; color: white; }
+    .btn-reset { background: #ddd; }
+    .preview-box {
+      margin-top: 20px;
+      padding: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background: #f9f9f9;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>HR Email Response Tool</h2>
+    <form id="hrForm">
+      <div class="radio-group">
+        <label><input type="radio" name="status" value="selected" checked> Selected</label>
+        <label><input type="radio" name="status" value="rejected"> Rejected</label>
+      </div>
+
+      <label>Candidate Name</label>
+      <input type="text" id="candidateName" placeholder="Enter candidate name">
+
+      <label>Candidate Email</label>
+      <input type="email" id="candidateEmail" placeholder="Enter candidate email">
+
+      <label>Position Applied</label>
+      <input type="text" id="position" placeholder="Enter position">
+
+      <button type="button" class="btn-preview" onclick="previewEmail()">Preview Email</button>
+      <button type="reset" class="btn-reset">Reset</button>
+    </form>
+
+    <div id="preview" class="preview-box" style="display:none;"></div>
+  </div>
+
+  <script>
+    function previewEmail() {
+      const name = document.getElementById("candidateName").value.trim();
+      const email = document.getElementById("candidateEmail").value.trim();
+      const position = document.getElementById("position").value.trim();
+      const status = document.querySelector("input[name='status']:checked").value;
+
+      if (!name || !email || !position) {
+        alert("Please fill all fields.");
+        return;
+      }
+
+      let message = "";
+      if (status === "selected") {
+        message = `Dear ${name},\n\nWe are pleased to inform you that you have been selected for the position of ${position}.\n\nPlease reply to this email to confirm your acceptance.\n\nBest regards,\nHR Team`;
+      } else {
+        message = `Dear ${name},\n\nThank you for applying for the position of ${position}.\n\nWe regret to inform you that we have decided to move forward with other candidates.\n\nBest regards,\nHR Team`;
+      }
+
+      const previewBox = document.getElementById("preview");
+      previewBox.style.display = "block";
+      previewBox.textContent = message;
+    }
+  </script>
+</body>
+</html>
